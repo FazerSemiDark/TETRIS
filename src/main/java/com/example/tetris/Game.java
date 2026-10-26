@@ -1,5 +1,5 @@
 package com.example.tetris;
-
+import javafx.scene.canvas.Canvas;
 
 
 // класс по сути затычка для теста, но в теории можно начать писать в нём логику игры
@@ -7,15 +7,17 @@ package com.example.tetris;
 
 
 public class Game {
-    public TetrisCell tc;
-    public Game(TetrisCell tetcell)
+    private final TetrisCell TetrisCellObj = new TetrisCell();
+    private final RenderCell RenderCellObj = TetrisCellObj.render_cell;
+    public Canvas GetCanvas()
     {
-        tc = tetcell;
-        setColor();
+        return TetrisCellObj.render_cell.getCanvas();
     }
-
-    private void setColor()
-    {
-        tc.setFill(2, 5);
+    public void render_field(){
+        RenderCellObj.render();
     }
+    //private void setColor()
+    //{
+//        tc.setFill(2, 5);
+//    }
 }

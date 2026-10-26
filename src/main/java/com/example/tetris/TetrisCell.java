@@ -1,7 +1,7 @@
 package com.example.tetris;
 
 public class TetrisCell {
-    public RenderCell rc;
+    public RenderCell render_cell;
 
     public int rows;
     public int cols;
@@ -26,19 +26,19 @@ public class TetrisCell {
     // Создаём сетку в виде двумерного массива и объект класса RenderCell для отрисовки
     private void createGrid(int r, int c) {
         grid = new boolean[r][c];
-        rc = new RenderCell(r, c, cell);
+        render_cell = new RenderCell(r, c, cell);
     }
 
     // Заполняем ячейку и просим RenderCell отрисовать её
     public void setFill(int h, int v) {
         grid[h][v] = true;
-        rc.setFillCell(h, v);
+        render_cell.setFillCell(h, v);
     }
 
     // Убирает ячейку и убирает визуальную отрисовку (не факт что правильно)
     public void setEmpty(int h, int v) {
         grid[h][v] = false;
-        rc.setEmptyCell(h, v);
+        render_cell.setEmptyCell(h, v);
     }
 
     public boolean isEmpty(int h, int v) {
