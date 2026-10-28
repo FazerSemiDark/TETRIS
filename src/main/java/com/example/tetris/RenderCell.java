@@ -52,13 +52,21 @@ public class RenderCell {
 
     // Метод для закраски оперделённой клетки на определённых координатах (пока только зелёным)
     public void setFillCell(int c, int r) {
-        gc.setFill(Color.GREEN);
+            gc.setFill(Color.GREEN);
         gc.fillRect(c * cell, r * cell, cell, cell);
     }
 
     // Метод убирает оперделённой клетки на определённых координатах
     // (пока не тестил, засунул пока по фасту для галочки)
+    //переделал
     public void setEmptyCell(int r, int c) {
-        gc.clearRect(r * cell, c * cell, cell, cell);
+        gc.setFill(Color.BLACK);
+        gc.fillRect(r * cell, c * cell, cell, cell);
+        gc.setStroke(Color.GRAY);
+        gc.setLineWidth(1);
+        gc.strokeLine(r*cell,c*cell,(r+1)*cell,c*cell);
+        gc.strokeLine(r*cell,c*cell,r*cell,(c+1)*cell);
+        gc.strokeLine((r+1)*cell,c*cell,(r+1)*cell,(c+1)*cell);
+        gc.strokeLine(r*cell,(c+1)*cell,(r+1)*cell,(c+1)*cell);
     }
 }
