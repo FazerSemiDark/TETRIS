@@ -25,7 +25,7 @@ public class TetrisCell {
 
     // Создаём сетку в виде двумерного массива и объект класса RenderCell для отрисовки
     private void createGrid(int r, int c) {
-        grid = new boolean[r][c];
+        grid = new boolean[c][r];//поменял r и c местами, потому что тут чтото не то работает
         render_cell = new RenderCell(r, c, cell);
     }
 
