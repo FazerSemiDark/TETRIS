@@ -21,22 +21,20 @@ public class Game {
     public void render_field(){
         RenderCellObj.render();
     }
-    private boolean isRot=false;
-    private boolean isDown = false;
-    //вращает фигуру
-    public void figureRotation(){
+    private void saveLastPosition(){
         LastFigureBasePoint[0] = FigureBasePoint[0];
         LastFigureBasePoint[1] = FigureBasePoint[1];
         LastFigureCoords = figure.retIdxL();
+    }
+    //вращает фигуру
+    public void figureRotation(){
+        saveLastPosition();
         figure.FigureRotate();
         field_update();
-        //isRot=false;
     }
     //создает эффект гравитации, фигура постепенно снижается вниз
     public void figure_downer(){
-        LastFigureBasePoint[0] = FigureBasePoint[0];
-        LastFigureBasePoint[1] = FigureBasePoint[1];
-        LastFigureCoords= figure.retIdxL();
+        saveLastPosition();
         FigureBasePoint[1]++;
         field_update();
         for(int i = 0;i<4;i++){
@@ -49,7 +47,7 @@ public class Game {
         System.out.println();
     }
     //обновляет отображение фигуры
-    public void field_update(){
+    private void field_update(){
         int xCoords;
         int yCoords;
         //очищает предыдущие точки
