@@ -26,11 +26,11 @@ public class TetrisApplication extends Application {
         stage.show(); // вызов окна
         GameObj.render_field();//отрисовка поля
         //цикл имитирующий гравитацию(снижение фигур)
-        Timeline FigureGravitation = new Timeline(new KeyFrame(Duration.seconds(1),e ->{
+        Timeline FigureGravitationCycle = new Timeline(new KeyFrame(Duration.seconds(1),e ->{
             GameObj.figure_downer();
         }));
-        FigureGravitation.setCycleCount(Timeline.INDEFINITE);
-        FigureGravitation.play();
+        FigureGravitationCycle.setCycleCount(Timeline.INDEFINITE);
+        FigureGravitationCycle.play();
 
         //Взаимодействие с клавиатурой
         stage.addEventFilter(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
