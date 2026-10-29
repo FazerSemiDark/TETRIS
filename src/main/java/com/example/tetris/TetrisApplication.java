@@ -25,30 +25,29 @@ public class TetrisApplication extends Application {
         stage.setScene(new Scene(root));
         stage.show(); // вызов окна
         GameObj.render_field();//отрисовка поля
-        //цикл обновления поля
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.0005),e ->{
-            GameObj.field_update();
-        }));
-        timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.play();
         //цикл имитирующий гравитацию(снижение фигур)
-        Timeline timeline2 = new Timeline(new KeyFrame(Duration.seconds(1),e ->{
+        Timeline FigureGravitation = new Timeline(new KeyFrame(Duration.seconds(1),e ->{
             GameObj.figure_downer();
         }));
-        timeline2.setCycleCount(Timeline.INDEFINITE);
-        timeline2.play();
+        FigureGravitation.setCycleCount(Timeline.INDEFINITE);
+        FigureGravitation.play();
 
         //Взаимодействие с клавиатурой
         stage.addEventFilter(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-                System.out.println(event.getCode());//LEFT RIGHT
+                long time = System.nanoTime();
+                System.out.println(event.getCode());
 
                 if(event.getCode() == KeyCode.SPACE) {//поворачивает фигуру на пробел
                     GameObj.figureRotation();
+                    long time2 = System.nanoTime();
+                    System.out.println(time2-time);
+                    System.out.println();
                 }
             }
         });
+
     }
 
 }

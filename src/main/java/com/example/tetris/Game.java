@@ -7,8 +7,8 @@ import javafx.scene.canvas.Canvas;
 
 
 public class Game {
-    private int[] FigureBasePoint = {3,5};//точка, от которой строим фигуру
-    private int[] LastFigureBasePoint={3,5};//предыдущее состояние этой точки
+    private int[] FigureBasePoint = {3,-2};//точка, от которой строим фигуру
+    private int[] LastFigureBasePoint={3,-2};//предыдущее состояние этой точки
     private Figure figure = new Figure();
     private int[][] FigureCoords = figure.indexList;//координаты точек фигуры
     private int[][] LastFigureCoords = figure.retIdxL();//их предыдущее состояние
@@ -21,13 +21,16 @@ public class Game {
     public void render_field(){
         RenderCellObj.render();
     }
+    private boolean isRot=false;
+    private boolean isDown = false;
     //вращает фигуру
     public void figureRotation(){
-        LastFigureCoords = figure.retIdxL();
-        figure.FigureRotate();
         LastFigureBasePoint[0] = FigureBasePoint[0];
         LastFigureBasePoint[1] = FigureBasePoint[1];
-
+        LastFigureCoords = figure.retIdxL();
+        figure.FigureRotate();
+        field_update();
+        //isRot=false;
     }
     //создает эффект гравитации, фигура постепенно снижается вниз
     public void figure_downer(){
@@ -35,6 +38,7 @@ public class Game {
         LastFigureBasePoint[1] = FigureBasePoint[1];
         LastFigureCoords= figure.retIdxL();
         FigureBasePoint[1]++;
+        field_update();
         for(int i = 0;i<4;i++){
             for(int j =0;j<2;j++){
                 System.out.print(LastFigureCoords[i][j]);
