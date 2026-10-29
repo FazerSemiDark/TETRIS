@@ -2,7 +2,7 @@ package com.example.tetris;
 import javafx.scene.paint.Color;
 public class Figure {
     private int[][] IndexRotatMatr= {{2,0},{1,0},{0,0},{2,1},{1,1},{0,1},{2,2},{1,2},{0,2}};//список перехода из одной координаты в другую при вращении
-    public int[][] indexList = {{2,0},{2,1},{2,2},{1,1}};//координаты точек в фигуре
+    public int[][] indexList = {{1,0},{1,1},{1,2},{0,1}};//координаты точек в фигуре
     private Color colour;
     private void indexSwap(int[][] list,int idx1,int idx2){//меняет индексы местами
         int [] indexNull = list[idx1];
