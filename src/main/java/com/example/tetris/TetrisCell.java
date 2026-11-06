@@ -44,4 +44,7 @@ public class TetrisCell {
     public boolean isEmpty(int h, int v) {
         return !grid[h][v];
     }
+    public boolean isFull(int h, int v) {
+        return grid[h][v];
+    }
 }
