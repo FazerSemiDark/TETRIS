@@ -45,6 +45,12 @@ public class TetrisApplication extends Application {
                     System.out.println(time2-time);
                     System.out.println();
                 }
+                if(event.getCode() == KeyCode.A){//двигает фигуру влево на клавишу A
+                    GameObj.figure_lefter();
+                }
+                if(event.getCode() == KeyCode.D){//двигает фигуру вправо на клавишу D
+                    GameObj.figure_righter();
+                }
             }
         });
 
