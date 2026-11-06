@@ -30,40 +30,65 @@ public class Game {
     public void figureRotation(){
         saveLastPosition();
         figure.FigureRotate();
-        field_update();
+        int res = field_update();
+        if(res == 1){
+            figure_righter();
+        }
+        else if(res == -1){
+            figure_lefter();
+        }
+    }
+    public void figure_lefter(){
+        saveLastPosition();
+        FigureBasePoint[0]--;
+        int res = field_update();
+        if(res == 1){//если фигура вышла за границу, то двигаем её вправо
+            figure_righter();
+        }
+    }
+    public void figure_righter(){
+        saveLastPosition();
+        FigureBasePoint[0]++;
+        int res = field_update();
+        if(res == -1){//если вышла за границу, то двигаем фигуру влево
+            figure_lefter();
+        }
     }
     //создает эффект гравитации, фигура постепенно снижается вниз
     public void figure_downer(){
         saveLastPosition();
         FigureBasePoint[1]++;
         field_update();
-        for(int i = 0;i<4;i++){
-            for(int j =0;j<2;j++){
-                System.out.print(LastFigureCoords[i][j]);
-                System.out.print(" ");
-            }
-            System.out.println();
-        }
-        System.out.println();
     }
     //обновляет отображение фигуры
-    private void field_update(){
+    private int field_update(){
+        //System.out.println("AAA");
         int xCoords;
         int yCoords;
+        int res = 0;
         //очищает предыдущие точки
         for(int i = 0;i<4;i++){
             int lastxCoords = LastFigureCoords[i][1] + LastFigureBasePoint[0];
             int lastyCoords = LastFigureCoords[i][0] + LastFigureBasePoint[1];
-            if(lastyCoords<0 || lastxCoords<0) break;
+            if(lastyCoords<0 || lastxCoords<0 || lastxCoords >= TetrisCellObj.cols) break;
             TetrisCellObj.setEmpty(lastxCoords,lastyCoords);
         }
         //рисует новые
         for(int i = 0;i<4;i++){
             xCoords = FigureCoords[i][1] + FigureBasePoint[0];//координаты по x
             yCoords = FigureCoords[i][0] + FigureBasePoint[1];//коордлинаты по y
-            if(xCoords<0 || yCoords<0) break;
+            if(yCoords < 0) break;
+            else if(xCoords < 0) {//если фигура вышла за границу слева, то двигаем её вправо, возвращая 1
+                res = 1;
+                break;
+            }
+            else if(xCoords >= TetrisCellObj.cols){//если фигура вышла за границу справа, то двигаем её влево, возвращая -1
+                res=-1;
+                break;
+            }
             TetrisCellObj.setFill(xCoords,yCoords);
 
         }
+        return res;
     }
 }
