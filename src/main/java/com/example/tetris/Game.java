@@ -62,16 +62,21 @@ public class Game {
     }
     //обновляет отображение фигуры
     private int field_update(){
-        //System.out.println("AAA");
-        int xCoords;
-        int yCoords;
+        //координаты точек в поле
+        int xCoords[] = new int[4];
+        int yCoords[] = new int[4];
+        int lastxCoords[] = new int[4];
+        int lastyCoords[] = new int[4];
         int res = 0;
         //очищает предыдущие точки
-        for(int i = 0;i<4;i++){
-            int lastxCoords = LastFigureCoords[i][1] + LastFigureBasePoint[0];
-            int lastyCoords = LastFigureCoords[i][0] + LastFigureBasePoint[1];
-            if(lastyCoords<0 || lastxCoords<0 || lastxCoords >= TetrisCellObj.cols) break;
-            else if(lastyCoords >= TetrisCellObj.rows-1){//если фигура дошла до конца, то запускаем новую
+        int i = 0;
+        for(i = 0;i<4;i++){//сначала проверяем все точки
+            lastxCoords[i] = LastFigureCoords[i][1] + LastFigureBasePoint[0];
+            lastyCoords[i] = LastFigureCoords[i][0] + LastFigureBasePoint[1];
+            if(lastyCoords[i]<0 || lastxCoords[i]<0 || lastxCoords[i] >= TetrisCellObj.cols) {
+                break;
+            }
+            else if(lastyCoords[i] >= TetrisCellObj.rows-1){//если фигура дошла до конца, то запускаем новую
                 System.out.println("НАЧАЛО");
                 FigureBasePoint[0] = 3;
                 FigureBasePoint[1] = -2;
@@ -79,23 +84,44 @@ public class Game {
                 LastFigureBasePoint[1] = FigureBasePoint[1];
                 break;
             }
-            TetrisCellObj.setEmpty(lastxCoords,lastyCoords);
+            //TetrisCellObj.setEmpty(lastxCoords,lastyCoords);
+        }
+        for(int j = 0;j<i;j++){//потом очищаем
+            TetrisCellObj.setEmpty(lastxCoords[j],lastyCoords[j]);
         }
         //рисует новые
-        for(int i = 0;i<4;i++){
-            xCoords = FigureCoords[i][1] + FigureBasePoint[0];//координаты по x
-            yCoords = FigureCoords[i][0] + FigureBasePoint[1];//коордлинаты по y
-            if(yCoords < 0) break;
-            else if(xCoords < 0) {//если фигура вышла за границу слева, то двигаем её вправо, возвращая 1
-                res = 1;
-                break;
-            }
-            else if(xCoords >= TetrisCellObj.cols){//если фигура вышла за границу справа, то двигаем её влево, возвращая -1
-                res=-1;
-                break;
-            }
-            TetrisCellObj.setFill(xCoords,yCoords);
+        for(i=0;i<4;i++){//сначала проверяем все точки
+            xCoords[i] = FigureCoords[i][1] + FigureBasePoint[0];//координаты по x
+            yCoords[i] = FigureCoords[i][0] + FigureBasePoint[1];//коордлинаты по y
 
+            if(yCoords[i] < 0) break;
+            else if(xCoords[i] < 0) {//если фигура вышла за границу слева, то двигаем её вправо, возвращая 1
+                res = 1;
+                return res;
+            }
+            else if(xCoords[i] >= TetrisCellObj.cols){//если фигура вышла за границу справа, то двигаем её влево, возвращая -1
+                res=-1;
+                return res;
+            }
+            if(TetrisCellObj.isFull(xCoords[i],yCoords[i])){//если здесь уже есть точка, то запускает новую фигуру
+                i=-1;
+                break;
+            }
+        }
+        if(i==-1){
+            for(int j =0;j<4;j++){//запуск новой фигуры, если эта фигура столкнулась с уже имеющимися
+                TetrisCellObj.setFill(lastxCoords[j],lastyCoords[j]);
+                System.out.println("НАЧАЛО2");
+                FigureBasePoint[0] = 3;
+                FigureBasePoint[1] = -2;
+                LastFigureBasePoint[0] = FigureBasePoint[0];
+                LastFigureBasePoint[1] = FigureBasePoint[1];
+            }
+        }
+        else{
+            for(int j =0;j<i;j++){//потом рисуем
+                TetrisCellObj.setFill(xCoords[j],yCoords[j]);
+            }
         }
         return res;
     }
