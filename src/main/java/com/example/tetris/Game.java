@@ -71,6 +71,14 @@ public class Game {
             int lastxCoords = LastFigureCoords[i][1] + LastFigureBasePoint[0];
             int lastyCoords = LastFigureCoords[i][0] + LastFigureBasePoint[1];
             if(lastyCoords<0 || lastxCoords<0 || lastxCoords >= TetrisCellObj.cols) break;
+            else if(lastyCoords >= TetrisCellObj.rows-1){//если фигура дошла до конца, то запускаем новую
+                System.out.println("НАЧАЛО");
+                FigureBasePoint[0] = 3;
+                FigureBasePoint[1] = -2;
+                LastFigureBasePoint[0] = FigureBasePoint[0];
+                LastFigureBasePoint[1] = FigureBasePoint[1];
+                break;
+            }
             TetrisCellObj.setEmpty(lastxCoords,lastyCoords);
         }
         //рисует новые
