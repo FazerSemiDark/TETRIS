@@ -1,5 +1,7 @@
 package com.example.tetris;
 
+import javafx.scene.paint.Color;
+
 public class TetrisCell {
     public RenderCell render_cell;
 
@@ -28,9 +30,9 @@ public class TetrisCell {
     }
 
     // Заполняем ячейку и просим RenderCell отрисовать её
-    public void setFill(int h, int v) {
+    public void setFill(int h, int v, Color color) {
         grid[h][v] = true;
-        render_cell.setFillCell(h, v);
+        render_cell.setFillCell(h, v, color);
     }
 
     // Убирает ячейку и убирает визуальную отрисовку (не факт что правильно)
