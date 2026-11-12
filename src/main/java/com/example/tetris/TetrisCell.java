@@ -1,5 +1,7 @@
 package com.example.tetris;
 
+import javafx.scene.paint.Color;
+
 public class TetrisCell {
     public RenderCell render_cell;
 
@@ -11,12 +13,10 @@ public class TetrisCell {
 
     // Задаём количество строк и столбоцов (по дефолту)
     public TetrisCell() {
-        rows = 20;
-        cols = 10;
-        createGrid(rows, cols);
+        this(20, 10);
     }
 
-    //  Задаём количество строк и столбоцов
+    // Задаём количество строк и столбоцов
     public TetrisCell(int rws, int clmns) {
         rows = rws;
         cols = clmns;
@@ -25,14 +25,14 @@ public class TetrisCell {
 
     // Создаём сетку в виде двумерного массива и объект класса RenderCell для отрисовки
     private void createGrid(int r, int c) {
-        grid = new boolean[r][c];
+        grid = new boolean[c][r]; // поменял r и c местами, потому что тут что-то не то работает
         render_cell = new RenderCell(r, c, cell);
     }
 
     // Заполняем ячейку и просим RenderCell отрисовать её
-    public void setFill(int h, int v) {
+    public void setFill(int h, int v, Color color) {
         grid[h][v] = true;
-        render_cell.setFillCell(h, v);
+        render_cell.setFillCell(h, v, color);
     }
 
     // Убирает ячейку и убирает визуальную отрисовку (не факт что правильно)
@@ -41,7 +41,8 @@ public class TetrisCell {
         render_cell.setEmptyCell(h, v);
     }
 
-    public boolean isEmpty(int h, int v) {
-        return !grid[h][v];
+    // Проверяем заполнена ли ячейка
+    public boolean isFull(int h, int v) {
+        return grid[h][v];
     }
 }
