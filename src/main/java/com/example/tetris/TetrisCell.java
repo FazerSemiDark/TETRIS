@@ -11,12 +11,10 @@ public class TetrisCell {
 
     // Задаём количество строк и столбоцов (по дефолту)
     public TetrisCell() {
-        rows = 20;
-        cols = 10;
-        createGrid(rows, cols);
+        this(20, 10);
     }
 
-    //  Задаём количество строк и столбоцов
+    // Задаём количество строк и столбоцов
     public TetrisCell(int rws, int clmns) {
         rows = rws;
         cols = clmns;
@@ -25,7 +23,7 @@ public class TetrisCell {
 
     // Создаём сетку в виде двумерного массива и объект класса RenderCell для отрисовки
     private void createGrid(int r, int c) {
-        grid = new boolean[c][r];//поменял r и c местами, потому что тут чтото не то работает
+        grid = new boolean[c][r]; // поменял r и c местами, потому что тут что-то не то работает
         render_cell = new RenderCell(r, c, cell);
     }
 
@@ -41,9 +39,7 @@ public class TetrisCell {
         render_cell.setEmptyCell(h, v);
     }
 
-    public boolean isEmpty(int h, int v) {
-        return !grid[h][v];
-    }
+    // Проверяем заполнена ли ячейка
     public boolean isFull(int h, int v) {
         return grid[h][v];
     }
