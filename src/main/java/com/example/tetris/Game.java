@@ -25,19 +25,21 @@ public class Game {
     private void getFigure() { //временно
         System.out.println("НОВАЯ ФИГУРА");
         Random random = new Random();
-        int number = random.nextInt(6);
+        int number = random.nextInt(7);
         switch (number) {
             case 0: figure = new T();
                 break;
             case 1: figure = new S();
                 break;
-            case 2: figure = new S();
+            case 2: figure = new Z();
                 break;
-            case 3: figure = new S();
+            case 3: figure = new J();
                 break;
-            case 4: figure = new T();
+            case 4: figure = new L();
                 break;
-            case 5: figure = new T();
+            case 5: figure = new O();
+                break;
+            case 6: figure = new I();
                 break;
 
         }
@@ -141,18 +143,19 @@ public class Game {
             }
             if (TetrisCellObj.isFull(xCoords[i], yCoords[i])) {
                 //если здесь уже есть точка
-                if (yCoords[i] - 1 == lastYCoords[i]) { // то запускаем новую фигуру
-                    i = -2;
-                    break;
-                }
-                if (xCoords[i] < lastXCoords[i] && yCoords[i] == lastYCoords[i]) { // то двигаем её вправо
+
+                if (xCoords[i] < lastXCoords[i]) { // то двигаем её вправо
                     figureBasePoint[0] += 1;
                     i = -1;
                     break;
                 }
-                else if (xCoords[i] > lastXCoords[i] && yCoords[i] == lastYCoords[i]) { // то двигаем её влево
+                else if (xCoords[i] > lastXCoords[i]) { // то двигаем её влево
                     figureBasePoint[0] -= 1;
                     i = -1;
+                    break;
+                }
+                if (yCoords[i] - 1 == lastYCoords[i]) { // то запускаем новую фигуру
+                    i = -2;
                     break;
                 }
                 break;

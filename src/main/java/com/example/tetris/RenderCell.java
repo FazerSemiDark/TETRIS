@@ -13,6 +13,9 @@ public class RenderCell {
     private final int COLS;
     private final int CELL;
 
+    private final Color BACKGROUND_COLOR = new Color(0, 0, 0, 1);
+    private final Color GRID_COLOR = new Color(0.5, 0.5, 0.5, 1);
+
     // Конструктор принимает количество строк, столбцов и размер клетки + создаёт canvas ужного размера
     // (позже для интерфейса изменим)
     public RenderCell(int rows, int cols, int cell) {
@@ -29,7 +32,7 @@ public class RenderCell {
 
     // Заливка фона
     public void render() {
-        gc.setFill(Color.BLACK);
+        gc.setFill(BACKGROUND_COLOR);
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
 
         drawGrid(); // рисуем сетку
@@ -37,7 +40,7 @@ public class RenderCell {
 
     // Метод для рисования сетки между клетками
     private void drawGrid() {
-        gc.setStroke(Color.GRAY);
+        gc.setStroke(GRID_COLOR);
         gc.setLineWidth(1);
 
         for (int x = 0; x <= COLS; x++) {
@@ -58,13 +61,37 @@ public class RenderCell {
 
     // Метод убирает оперделённой клетки на определённых координатах
     public void setEmptyCell(int r, int c) {
-        gc.setFill(Color.BLACK);
+
+        // ПЕРДЕЛАТЬ!
+
+        gc.setFill(BACKGROUND_COLOR);
         gc.fillRect(r * CELL, c * CELL, CELL, CELL);
-        gc.setStroke(Color.GRAY);
+        gc.setStroke(BACKGROUND_COLOR);
         gc.setLineWidth(1);
         gc.strokeLine(r*CELL,c*CELL,(r+1)*CELL,c*CELL);
+        gc.setStroke(GRID_COLOR);
+        gc.setLineWidth(1);
+        gc.strokeLine(r*CELL,c*CELL,(r+1)*CELL,c*CELL);
+
+        gc.setStroke(BACKGROUND_COLOR);
+        gc.setLineWidth(1);
         gc.strokeLine(r*CELL,c*CELL,r*CELL,(c+1)*CELL);
+        gc.setStroke(GRID_COLOR);
+        gc.setLineWidth(1);
+        gc.strokeLine(r*CELL,c*CELL,r*CELL,(c+1)*CELL);
+
+        gc.setStroke(BACKGROUND_COLOR);
+        gc.setLineWidth(1);
         gc.strokeLine((r+1)*CELL,c*CELL,(r+1)*CELL,(c+1)*CELL);
+        gc.setStroke(GRID_COLOR);
+        gc.setLineWidth(1);
+        gc.strokeLine((r+1)*CELL,c*CELL,(r+1)*CELL,(c+1)*CELL);
+
+        gc.setStroke(BACKGROUND_COLOR);
+        gc.setLineWidth(1);
+        gc.strokeLine(r*CELL,(c+1)*CELL,(r+1)*CELL,(c+1)*CELL);
+        gc.setStroke(GRID_COLOR);
+        gc.setLineWidth(1);
         gc.strokeLine(r*CELL,(c+1)*CELL,(r+1)*CELL,(c+1)*CELL);
     }
 }
