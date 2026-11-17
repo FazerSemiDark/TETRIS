@@ -17,7 +17,9 @@ public abstract class Figure {
         this.matrixSize = (int) Math.sqrt(indexRotateMatrix.length);
         this.canRotate = canRot;
     }
-
+    public int getMatrixSize(){
+        return matrixSize;
+    }
     private void indexSwap(int[][] list, int idx1, int idx2) { // меняет индексы местами
         int[] indexNull = list[idx1];
         list[idx1] = list[idx2];

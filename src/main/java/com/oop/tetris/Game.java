@@ -26,23 +26,30 @@ public class Game {
     private void getFigure() { // временно
         System.out.println("НОВАЯ ФИГУРА");
         Random random = new Random();
-        int number = random.nextInt(7);
+        int number = random.nextInt(2);
         switch (number) {
-            case 0: figure = new T();
-                break;
-            case 1: figure = new S();
-                break;
-            case 2: figure = new Z();
-                break;
-            case 3: figure = new J();
-                break;
-            case 4: figure = new L();
-                break;
-            case 5: figure = new O();
-                break;
-            case 6: figure = new I();
-                break;
+            case 0: figure = new O();
+            break;
+            case 1: figure = new I();
+            break;
         }
+//        int number = random.nextInt(7);
+//        switch (number) {
+//            case 0: figure = new T();
+//                break;
+//            case 1: figure = new S();
+//                break;
+//            case 2: figure = new Z();
+//                break;
+//            case 3: figure = new J();
+//                break;
+//            case 4: figure = new L();
+//                break;
+//            case 5: figure = new O();
+//                break;
+//            case 6: figure = new I();
+//                break;
+//        }
 
         figureCoords = figure.retIdxL();
         saveLastPosition();
@@ -154,12 +161,12 @@ public class Game {
                 //если здесь уже есть точка
 
                 if (xCoords[i] < lastXCoords[i]) { // то двигаем её вправо
-                    figureBasePoint[0] += 1;
+                    figureBasePoint[0] += 1 + figure.getMatrixSize() - 3;
                     i = -1;
                     break;
                 }
                 else if (xCoords[i] > lastXCoords[i]) { // то двигаем её влево
-                    figureBasePoint[0] -= 1;
+                    figureBasePoint[0] -= 1 + figure.getMatrixSize() - 3;
                     i = -1;
                     break;
                 }
