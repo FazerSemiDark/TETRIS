@@ -62,7 +62,7 @@ public class Game {
     // вращает фигуру
     public void figureRotation() {
         saveLastPosition();
-        figure.FigureRotate();
+        figure.figureRotate();
         figureCoords = figure.retIdxL();
         int res = field_update();
 
