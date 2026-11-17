@@ -78,8 +78,12 @@ public class Game {
         saveLastPosition();
         figureBasePoint[0]--;
         int res = field_update();
-        if (res == 1) { // если фигура вышла за границу, то двигаем её вправо
+        if (res == 1) {
+            System.out.println("НУЖНО ВПРАВО");// если фигура вышла за границу, то двигаем её вправо
             figure_righter();
+        }
+        else if(res == -1) {
+            figure_lefter();
         }
     }
 
@@ -90,6 +94,9 @@ public class Game {
         //если вышла за границу, то двигаем фигуру влево
         if (res == -1) {
             figure_lefter();
+        }
+        else if(res == 1){
+            figure_righter();
         }
     }
 
@@ -134,7 +141,8 @@ public class Game {
             yCoords[i] = figureCoords[i][0] + figureBasePoint[1]; // коордлинаты по y
 
             if (yCoords[i] < 0) break;
-            else if (xCoords[i] < 0) { // если фигура вышла за границу слева, то двигаем её вправо, возвращая 1
+            else if (xCoords[i] < 0) {// если фигура вышла за границу слева, то двигаем её вправо, возвращая 1
+                System.out.println("БЛЯЯЯЯЯф");
                 res = 1;
                 return res;
             }
