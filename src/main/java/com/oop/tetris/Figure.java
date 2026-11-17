@@ -1,13 +1,22 @@
-package com.example.tetris;
+package com.oop.tetris;
 import javafx.scene.paint.Color;
 
-public class Figure {
-    protected int[][] IndexRotatMatr; // список перехода из одной координаты в другую при вращении
-    protected int[][] indexList;// координаты точек в фигуре
-    protected int MatrSize;
-    protected Color colour;
+public abstract class Figure {
+    private final int matrixSize;
+    Color colour;
+    boolean canRotate;
 
-    Figure() {}
+    private final int[][] indexRotateMatrix; // список перехода из одной координаты в другую при вращении
+    private final int[][] indexList; // координаты точек в фигуре
+
+    protected Figure(int matS, Color color, int[][] indList, int[][] indLMatrix, boolean canRot)
+    {
+        this.matrixSize = matS;
+        this.colour = color;
+        this.indexList = indList;
+        this.indexRotateMatrix = indLMatrix;
+        this.canRotate = canRot;
+    }
 
     private void indexSwap(int[][] list, int idx1, int idx2) { // меняет индексы местами
         int [] indexNull = list[idx1];
@@ -24,9 +33,14 @@ public class Figure {
         return res;
     }
     public void FigureRotate() { // вращение фигуры
+        if (!canRotate) {
+            System.out.println("Not Rotated");
+            return;
+        }
+
         for (int i = 0; i < 4; i++) { // меняем координаты
             int[] idx = indexList[i];
-            indexList[i] = IndexRotatMatr[idx[0] * MatrSize + idx[1]];
+            indexList[i] = indexRotateMatrix[idx[0] * matrixSize + idx[1]];
         }
         // сортируем массив
         if (indexList[0][0] < indexList[1][0]) indexSwap(indexList,1,0);

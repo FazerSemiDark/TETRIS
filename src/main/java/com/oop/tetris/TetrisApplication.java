@@ -1,4 +1,4 @@
-package com.example.tetris;
+package com.oop.tetris;
 
 import javafx.animation.KeyFrame;
 import javafx.application.Application;

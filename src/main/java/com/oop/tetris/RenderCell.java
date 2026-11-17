@@ -1,4 +1,4 @@
-package com.example.tetris;
+package com.oop.tetris;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;

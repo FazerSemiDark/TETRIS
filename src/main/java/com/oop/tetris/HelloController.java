@@ -1,4 +1,4 @@
-package com.example.tetris;
+package com.oop.tetris;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

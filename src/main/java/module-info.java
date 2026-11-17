@@ -3,6 +3,6 @@ module com.example.tetris {
     requires javafx.fxml;
 
 
-    opens com.example.tetris to javafx.fxml;
-    exports com.example.tetris;
+    opens com.oop.tetris to javafx.fxml;
+    exports com.oop.tetris;
 }

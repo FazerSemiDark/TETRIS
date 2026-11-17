@@ -1,16 +1,16 @@
-package com.example.tetris;
+package com.oop.tetris;
 import javafx.scene.canvas.Canvas;
 
 import java.util.Random;
 
 public class Game {
-    private int[] figureBasePoint = {3, -2}; // точка, от которой строим фигуру
-    private int[] lastFigureBasePoint = {3, -2}; // предыдущее состояние этой точки
+    private final int[] figureBasePoint = {3, -2}; // точка, от которой строим фигуру
+    private final int[] lastFigureBasePoint = {3, -2}; // предыдущее состояние этой точки
 
-    private Figure figure;// = getFigure();
+    private Figure figure; // = getFigure();
 
-    private int[][] figureCoords;//координаты точек фигуры
-    private int[][] lastFigureCoords; //их предыдущее состояние
+    private int[][] figureCoords; // координаты точек фигуры
+    private int[][] lastFigureCoords; // их предыдущее состояние
 
     private final TetrisCell TetrisCellObj = new TetrisCell();
     private final RenderCell RenderCellObj = TetrisCellObj.render_cell;
@@ -22,7 +22,8 @@ public class Game {
     public Canvas GetCanvas() {
         return TetrisCellObj.render_cell.getCanvas();
     }
-    private void getFigure() { //временно
+
+    private void getFigure() { // временно
         System.out.println("НОВАЯ ФИГУРА");
         Random random = new Random();
         int number = random.nextInt(7);
@@ -41,12 +42,12 @@ public class Game {
                 break;
             case 6: figure = new I();
                 break;
-
         }
+
         figureCoords = figure.retIdxL();
         saveLastPosition();
-        figureBasePoint[0] = 3;//рандомные число
-        figureBasePoint[1] = -2;//не рандомн
+        figureBasePoint[0] = 3; // рандомные число
+        figureBasePoint[1] = -2; // не рандомн
     }
     public void render_field() {
         RenderCellObj.render();
