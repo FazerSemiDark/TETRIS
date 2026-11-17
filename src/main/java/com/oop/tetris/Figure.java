@@ -9,17 +9,17 @@ public abstract class Figure {
     private final int[][] indexRotateMatrix; // список перехода из одной координаты в другую при вращении
     private final int[][] indexList; // координаты точек в фигуре
 
-    protected Figure(int matS, Color color, int[][] indList, int[][] indLMatrix, boolean canRot)
+    protected Figure(Color color, int[][] indList, int[][] indLMatrix, boolean canRot)
     {
-        this.matrixSize = matS;
         this.colour = color;
         this.indexList = indList;
         this.indexRotateMatrix = indLMatrix;
+        this.matrixSize = (int) Math.sqrt(indexRotateMatrix.length);
         this.canRotate = canRot;
     }
 
     private void indexSwap(int[][] list, int idx1, int idx2) { // меняет индексы местами
-        int [] indexNull = list[idx1];
+        int[] indexNull = list[idx1];
         list[idx1] = list[idx2];
         list[idx2] = indexNull;
     }
@@ -32,7 +32,7 @@ public abstract class Figure {
         }
         return res;
     }
-    public void FigureRotate() { // вращение фигуры
+    public void figureRotate() { // вращение фигуры
         if (!canRotate) {
             System.out.println("Not Rotated");
             return;
