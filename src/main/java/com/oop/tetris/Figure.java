@@ -1,15 +1,14 @@
 package com.oop.tetris;
-import javafx.scene.paint.Color;
 
 public abstract class Figure {
     private final int matrixSize;
-    Color colour;
+    CellState colour;
     boolean canRotate;
 
     private final int[][] indexRotateMatrix; // список перехода из одной координаты в другую при вращении
     private final int[][] indexList; // координаты точек в фигуре
 
-    protected Figure(Color color, int[][] indList, int[][] indLMatrix, boolean canRot)
+    protected Figure(CellState color, int[][] indList, int[][] indLMatrix, boolean canRot)
     {
         this.colour = color;
         this.indexList = indList;

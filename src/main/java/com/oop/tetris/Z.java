@@ -1,10 +1,11 @@
 package com.oop.tetris;
 
+import javafx.scene.control.Cell;
 import javafx.scene.paint.Color;
 
 public class Z extends Figure {
     public Z() {
-        super(Color.RED, // Colour
+        super(CellState.RED, // Colour
                 new int[][] {{1,1}, {1,2}, {0,0}, {0,1}}, // Index List
                 new int[][] { // Index Rotate Matrix
                 {2,0}, {1,0}, {0,0},

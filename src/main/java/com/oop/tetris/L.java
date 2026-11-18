@@ -4,7 +4,7 @@ import javafx.scene.paint.Color;
 
 public class L extends Figure {
     public L() {
-        super(Color.ORANGE, // Colour
+        super(CellState.ORANGE, // Colour
                 new int[][] {{1,0}, {1,1}, {1,2}, {0,2}}, // Index List
                 new int[][] { // Index Rotate Matrix
                 {2,0}, {1,0}, {0,0},

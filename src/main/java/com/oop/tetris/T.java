@@ -3,8 +3,9 @@ package com.oop.tetris;
 import javafx.scene.paint.Color;
 
 public class T extends Figure {
+
     public T() {
-        super(Color.VIOLET, // Colour
+        super(CellState.VIOLET, // Colour
                 new int[][] {{1,0}, {1,1}, {1,2}, {0,1}}, // indexList
                 new int[][] { // indexRotateMatrix
                 {2,0}, {1,0}, {0,0},

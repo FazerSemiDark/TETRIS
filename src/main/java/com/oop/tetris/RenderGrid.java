@@ -4,7 +4,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-public class RenderCell {
+public class RenderGrid {
 
     private final Canvas canvas;
     private final GraphicsContext gc;
@@ -18,7 +18,7 @@ public class RenderCell {
 
     // Конструктор принимает количество строк, столбцов и размер клетки + создаёт canvas ужного размера
     // (позже для интерфейса изменим)
-    public RenderCell(int rows, int cols, int cell) {
+    public RenderGrid(int rows, int cols, int cell) {
         this.ROWS = rows;
         this.COLS = cols;
         this.CELL = cell;
@@ -54,8 +54,37 @@ public class RenderCell {
     }
 
     // Метод для закраски оперделённой клетки на определённых координатах (пока только зелёным)
-    public void setFillCell(int c, int r, Color color) {
-        gc.setFill(color);
+    public void setFillCell(int c, int r, CellState color) {
+        switch (color) {
+            case RED:
+                gc.setFill(Color.RED);
+                break;
+            case ORANGE:
+                gc.setFill(Color.ORANGE);
+                break;
+            case YELLOW:
+                gc.setFill(Color.YELLOW);
+                break;
+            case GREEN:
+                gc.setFill(Color.GREEN);
+                break;
+            case LIGHT_BLUE:
+                gc.setFill(Color.LIGHTBLUE);
+                break;
+            case BLUE:
+                gc.setFill(Color.BLUE);
+                break;
+            case VIOLET:
+                gc.setFill(Color.VIOLET);
+                break;
+            default:
+                System.out.println("ЮДЯЯЯЯЯЯЯЯ");
+                System.out.println(color);
+                System.out.println("БЛЯЯЯЯЯЯ");
+                gc.setFill(BACKGROUND_COLOR);
+                break;
+        }
+
         gc.fillRect(c * CELL, r * CELL, CELL, CELL);
     }
 
