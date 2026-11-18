@@ -71,7 +71,7 @@
 
         public void replaceLine(int y, int newY) {
             setEmptyLine(newY);
-            for (int x = 0; x < rows; x++) {
+            for (int x = 0; x < cols; x++) {
                 if (!grid[x][y].isEmpty()) {
                     setFillCell(x, newY, grid[x][y]);
                 }

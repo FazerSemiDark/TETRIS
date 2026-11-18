@@ -1,6 +1,7 @@
 package com.oop.tetris;
 import javafx.scene.canvas.Canvas;
 
+import java.time.temporal.UnsupportedTemporalTypeException;
 import java.util.Random;
 
 public class Game {
@@ -194,16 +195,16 @@ public class Game {
 
     private void lockFigure()
     {
-        int y;
-        for (int j = 0; j < 4; j++) {
-            y = lastFigureCoords[j][0] + lastFigureBasePoint[1];
-            System.out.println("X координата: " + y);
-
-            if (TetrisGridObj.lineIsFull(y)) {
-                TetrisGridObj.setEmptyLine(y);
+        int x = 0;
+        for (int j = 0; j < figure.countFillCells(); j++) {
+            x = lastFigureCoords[j][0] + lastFigureBasePoint[1];
+            while (TetrisGridObj.lineIsFull(x)) {
+                TetrisGridObj.setEmptyLine(x);
+                for (int i = x - 1; i != 0; i--) {
+                    TetrisGridObj.replaceLine(i, i + 1);
+                }
             }
         }
-
         createFigure();
     }
 }

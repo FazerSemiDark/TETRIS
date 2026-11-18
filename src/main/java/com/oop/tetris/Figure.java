@@ -17,6 +17,10 @@ public abstract class Figure {
         this.canRotate = canRot;
     }
 
+    public int countFillCells() {
+        return indexList.length;
+    }
+
     private void indexSwap(int[][] list, int idx1, int idx2) { // меняет индексы местами
         int[] indexNull = list[idx1];
         list[idx1] = list[idx2];
