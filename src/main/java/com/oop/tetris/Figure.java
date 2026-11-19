@@ -1,5 +1,4 @@
 package com.oop.tetris;
-import javafx.scene.paint.Color;
 
 public abstract class Figure {
     private final int matrixSize;
@@ -18,7 +17,7 @@ public abstract class Figure {
         this.canRotate = canRot;
     }
 
-    public int countFillCells() {
+    public int getCountFillCells() {
         return indexList.length;
     }
 
