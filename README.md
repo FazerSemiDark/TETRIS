@@ -14,5 +14,5 @@
 
 ### Клонирование репозитория
 ```bash
-git clone https://github.com/ваш-username/tetris-java.git
-cd tetris-java
+git clone https://github.com/FazerSemiDark/TETRIS.git
+cd TETRIS
