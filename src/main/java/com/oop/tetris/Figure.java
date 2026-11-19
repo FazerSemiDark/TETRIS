@@ -1,4 +1,5 @@
 package com.oop.tetris;
+import javafx.scene.paint.Color;
 
 public abstract class Figure {
     private final int matrixSize;

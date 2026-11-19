@@ -27,23 +27,30 @@ public class Game {
     private void createFigure() { // временно
         System.out.println("НОВАЯ ФИГУРА");
         Random random = new Random();
-        int number = random.nextInt(7);
+        int number = random.nextInt(2);
         switch (number) {
-            case 0: figure = new T();
-                break;
-            case 1: figure = new S();
-                break;
-            case 2: figure = new Z();
-                break;
-            case 3: figure = new J();
-                break;
-            case 4: figure = new L();
-                break;
-            case 5: figure = new O();
-                break;
-            case 6: figure = new I();
-                break;
+            case 0: figure = new O();
+            break;
+            case 1: figure = new I();
+            break;
         }
+//        int number = random.nextInt(7);
+//        switch (number) {
+//            case 0: figure = new T();
+//                break;
+//            case 1: figure = new S();
+//                break;
+//            case 2: figure = new Z();
+//                break;
+//            case 3: figure = new J();
+//                break;
+//            case 4: figure = new L();
+//                break;
+//            case 5: figure = new O();
+//                break;
+//            case 6: figure = new I();
+//                break;
+//        }
 
         figureCoords = figure.retIdxL();
         saveLastPosition();
@@ -79,8 +86,12 @@ public class Game {
         saveLastPosition();
         figureBasePoint[0]--;
         int res = field_update();
-        if (res == 1) { // если фигура вышла за границу, то двигаем её вправо
+        if (res == 1) {
+            System.out.println("НУЖНО ВПРАВО");// если фигура вышла за границу, то двигаем её вправо
             figure_righter();
+        }
+        else if(res == -1) {
+            figure_lefter();
         }
     }
 
@@ -91,6 +102,9 @@ public class Game {
         //если вышла за границу, то двигаем фигуру влево
         if (res == -1) {
             figure_lefter();
+        }
+        else if(res == 1){
+            figure_righter();
         }
     }
 
@@ -140,7 +154,8 @@ public class Game {
             yCoords[i] = figureCoords[i][0] + figureBasePoint[1]; // коордлинаты по y
 
             if (yCoords[i] < 0) break;
-            else if (xCoords[i] < 0) { // если фигура вышла за границу слева, то двигаем её вправо, возвращая 1
+            else if (xCoords[i] < 0) {// если фигура вышла за границу слева, то двигаем её вправо, возвращая 1
+                System.out.println("БЛЯЯЯЯЯф");
                 res = 1;
                 return res;
             }
@@ -152,12 +167,12 @@ public class Game {
                 //если здесь уже есть точка
 
                 if (xCoords[i] < lastXCoords[i]) { // то двигаем её вправо
-                    figureBasePoint[0] += 1;
+                    figureBasePoint[0] += 1 + figure.getMatrixSize() - 3;
                     i = -1;
                     break;
                 }
                 else if (xCoords[i] > lastXCoords[i]) { // то двигаем её влево
-                    figureBasePoint[0] -= 1;
+                    figureBasePoint[0] -= 1 + figure.getMatrixSize() - 3;
                     i = -1;
                     break;
                 }
