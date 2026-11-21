@@ -4,7 +4,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-public class RenderGrid {
+public class RenderGrid extends RenderGridAbstr{
 
     private final Canvas canvas;
     private final GraphicsContext gc;
@@ -16,6 +16,9 @@ public class RenderGrid {
     private final Color BACKGROUND_COLOR = new Color(0, 0, 0, 1);
     private final Color GRID_COLOR = new Color(0.5, 0.5, 0.5, 1);
 
+    public RenderGrid(){
+        this(20,10,30);
+    }
     // Конструктор принимает количество строк, столбцов и размер клетки + создаёт canvas ужного размера
     // (позже для интерфейса изменим)
     public RenderGrid(int rows, int cols, int cell) {
@@ -31,7 +34,8 @@ public class RenderGrid {
     }
 
     // Заливка фона
-    public void render() {
+    @Override
+    protected void render() {
         gc.setFill(BACKGROUND_COLOR);
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
 
@@ -54,7 +58,8 @@ public class RenderGrid {
     }
 
     // Метод для закраски оперделённой клетки на определённых координатах (пока только зелёным)
-    public void setFillCell(int c, int r, CellState color) {
+    @Override
+    protected void setFillCell(int c, int r, CellState color) {
         switch (color) {
             case RED:
                 gc.setFill(Color.RED);
@@ -89,7 +94,8 @@ public class RenderGrid {
     }
 
     // Метод убирает оперделённой клетки на определённых координатах
-    public void setEmptyCell(int r, int c) {
+    @Override
+    protected void setEmptyCell(int r, int c) {
 
         // ПЕРДЕЛАТЬ!
 

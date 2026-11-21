@@ -14,12 +14,14 @@ import javafx.animation.Timeline;
 public class TetrisApplication extends Application {
 
     private static final double MOVE_SPEED = 1;
-
-    Game GameObj = new Game();
+    Game GameObj;
+    RenderGrid RenderGridObj;
 
     @Override
     public void start(Stage stage) {
-        StackPane root = new StackPane(GameObj.GetCanvas()); // тут оно как-то его создаёт, я хз
+        RenderGridObj = new RenderGrid();//создаём реализацию RenderGrid
+        GameObj = new Game(20,10,RenderGridObj);
+        StackPane root = new StackPane(RenderGridObj.getCanvas());// тут оно как-то его создаёт, я хз
         stage.setScene(new Scene(root));
         stage.show(); // вызов окна
         GameObj.render_field(); // отрисовка поля

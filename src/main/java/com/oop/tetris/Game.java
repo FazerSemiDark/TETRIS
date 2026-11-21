@@ -1,5 +1,4 @@
 package com.oop.tetris;
-import javafx.scene.canvas.Canvas;
 
 import java.util.Random;
 
@@ -12,16 +11,13 @@ public class Game {
     private int[][] figureCoords; // координаты точек фигуры
     private int[][] lastFigureCoords; // их предыдущее состояние
 
-    private final TetrisGrid TetrisGridObj = new TetrisGrid();
-    private final RenderGrid RenderGridObj = TetrisGridObj.render_grid;
+    private final TetrisGrid TetrisGridObj;
 
-    Game() {
+    Game(int rows, int columns, RenderGridAbstr render_grid) {//передаём размер поля и реализацию RenderGrid
+        TetrisGridObj = new TetrisGrid(rows,columns,render_grid);
         createFigure();
     }
 
-    public Canvas GetCanvas() {
-        return TetrisGridObj.render_grid.getCanvas();
-    }
 
     private void createFigure() { // временно
         System.out.println("НОВАЯ ФИГУРА");
@@ -57,7 +53,7 @@ public class Game {
         figureBasePoint[1] = -2; // не рандомн
     }
     public void render_field() {
-        RenderGridObj.render();
+        TetrisGridObj.makeField();
     }
 
     private void saveLastPosition() {

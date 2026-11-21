@@ -3,7 +3,7 @@
     import java.util.Arrays;
 
     public class TetrisGrid {
-        public RenderGrid render_grid;
+        public RenderGridAbstr render_grid;
 
         public int rows;
         public int cols;
@@ -12,19 +12,23 @@
         private CellState[][] grid;
 
         // Задаём количество строк и столбоцов (по дефолту)
-        public TetrisGrid() {
-            this(20, 10);
-        }
+//        public TetrisGrid() {
+//            this(20, 10);
+//        }
 
         // Задаём количество строк и столбоцов
-        public TetrisGrid(int rws, int clmns) {
+        public TetrisGrid(int rws, int clmns,RenderGridAbstr rendGr) {//задаём размер поля и реализацию RenderGrid
             this.rows = rws;
             this.cols = clmns;
-            this.render_grid = new RenderGrid(rows, cols, cellSize);
+            this.render_grid = rendGr;
+
             this.grid = new CellState[cols][rows];
             for (CellState[] row : grid) {
                 Arrays.fill(row, CellState.EMPTY);
             }
+        }
+        protected void makeField(){
+            render_grid.render();
         }
 
         // Создаём сетку в виде двумерного массива и объект класса RenderCell для отрисовки
