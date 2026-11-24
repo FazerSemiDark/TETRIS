@@ -43,7 +43,7 @@ public class ConsoleApplication {
             }
         });
         inputThread.start();
-        for(int i = 0;i<100;i++){
+        while (true) {
             RenderGridObj.render();//отрисовка поля
             try {
                 TimeUnit.SECONDS.sleep(MOVE_SPEED);//задержка отрисовки/скорость падения фигур
