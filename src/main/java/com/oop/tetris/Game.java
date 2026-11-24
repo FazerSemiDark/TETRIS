@@ -13,7 +13,7 @@ public class Game {
 
     private final TetrisGrid TetrisGridObj;
 
-    Game(int rows, int columns, RenderGridAbstr render_grid) {//передаём размер поля и реализацию RenderGrid
+    public Game(int rows, int columns, RenderGridAbstr render_grid) {//передаём размер поля и реализацию RenderGrid
         TetrisGridObj = new TetrisGrid(rows,columns,render_grid);
         createFigure();
     }
