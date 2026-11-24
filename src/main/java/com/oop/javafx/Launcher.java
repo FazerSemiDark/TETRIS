@@ -1,4 +1,4 @@
-package com.oop.tetris;
+package com.oop.javafx;
 
 import javafx.application.Application;
 

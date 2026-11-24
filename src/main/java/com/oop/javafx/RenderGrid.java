@@ -1,10 +1,12 @@
-package com.oop.tetris;
+package com.oop.javafx;
 
+import com.oop.tetris.CellState;
+import com.oop.tetris.RenderGridAbstr;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-public class RenderGrid extends RenderGridAbstr{
+public class RenderGrid extends RenderGridAbstr {
 
     private final Canvas canvas;
     private final GraphicsContext gc;
@@ -83,9 +85,6 @@ public class RenderGrid extends RenderGridAbstr{
                 gc.setFill(Color.VIOLET);
                 break;
             default:
-                System.out.println("ЮДЯЯЯЯЯЯЯЯ");
-                System.out.println(color);
-                System.out.println("БЛЯЯЯЯЯЯ");
                 gc.setFill(BACKGROUND_COLOR);
                 break;
         }

@@ -1,5 +1,6 @@
-package com.oop.tetris;
+package com.oop.javafx;
 
+import com.oop.tetris.Game;
 import javafx.animation.KeyFrame;
 import javafx.application.Application;
 import javafx.event.EventHandler;
